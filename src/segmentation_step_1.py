@@ -26,10 +26,8 @@ for i in ddir:
         img_0=cv2.resize(img, dsize)
         
         img_rgb=cv2.cvtColor(img_0, cv2.COLOR_BGR2RGB)
-        #ubah citra ke hsv supaya memudahkan pemilihan warna
         img_hsv= cv2.cvtColor(img_0, cv2.COLOR_BGR2HLS)
         
-        #tentukan range nilai piksel untuk mask
         lower_green=np.array([18,28,43],dtype=np.uint8) 
         upper_green=np.array([79,198,207],dtype=np.uint8) 
         mask=cv2.inRange(img_hsv,lower_green,upper_green)
@@ -45,8 +43,6 @@ for i in ddir:
         kernel1 = np.ones((3,3),np.uint8)
         eroded1 = cv2.erode(closing1, kernel1, iterations=iterasi)
 
-       
-        #hasil masking
         hasil_rgb=cv2.bitwise_and(img_rgb,img_rgb, mask=eroded1)
         
         parts = i.split('_')
