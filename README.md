@@ -11,13 +11,15 @@ This project implements an image segmentation pipeline to isolate rice plants fr
    The program reads all `.jpg` images from a specified directory and resizes them to reduce computational load while maintaining visual features.
 
 2. **Color Space Conversion**
-   The images are converted from the default BGR format to the HLS color space to better separate color information from lighting conditions. This conversion helps make the segmentation process more stable when images are captured under varying illumination in outdoor environments.
+   The images are converted from the default BGR format to the HLS color space to better separate color information from lighting conditions. This conversion helps make the segmentation
+   process more stable when images are captured under varying illumination in outdoor environments.
 
-3. **Green Color Thresholding**
-   A selected range of color values is applied to identify regions corresponding to rice plants. This step filters out most background elements and produces a binary mask that highlights the vegetation areas to be processed further.
+4. **Green Color Thresholding**
+   A selected range of color values is applied to identify regions corresponding to rice plants. This step filters out most background elements and produces a binary mask that highlights
+   the vegetation areas to be processed further.
 
 
-4. **Morphological Refinement**
+6. **Morphological Refinement**
    To improve segmentation quality, several morphological operations are applied:
 
    * **Dilation**: Connects fragmented leaf regions.
@@ -26,13 +28,13 @@ This project implements an image segmentation pipeline to isolate rice plants fr
 
    These operations ensure that the segmented plant appears as a continuous structure rather than scattered pixels.
 
-5. **Mask Application**
+7. **Mask Application**
    The refined binary mask is applied to the original image using a bitwise operation, producing the final segmented output where:
 
    * Rice plants are preserved.
    * Background (soil, shadows, debris) is suppressed.
 
-6. **Output Generation**
+8. **Output Generation**
    The processed images are automatically saved to an output directory with a new filename prefix, enabling batch processing of large datasets.
 
 ## Purpose
