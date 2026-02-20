@@ -10,21 +10,12 @@ This project implements an image segmentation pipeline to isolate rice plants fr
 1. **Image Input**
    The program reads all `.jpg` images from a specified directory and resizes them to reduce computational load while maintaining visual features.
 
-2. **Color Space Conversion (BGR → HLS)**
-   Images are converted from the default BGR format to HLS color space.
-   This transformation improves segmentation reliability because:
-
-   * Hue represents color type (useful for detecting green vegetation).
-   * Lightness separates brightness variations caused by sunlight.
-   * Saturation helps distinguish plants from soil and background noise.
+2. **Color Space Conversion**
+   The images are converted from the default BGR format to the HLS color space to better separate color information from lighting conditions. This conversion helps make the segmentation process more stable when images are captured under varying illumination in outdoor environments.
 
 3. **Green Color Thresholding**
-   A predefined HLS range is used to identify pixels belonging to rice plants:
+   A selected range of color values is applied to identify regions corresponding to rice plants. This step filters out most background elements and produces a binary mask that highlights the vegetation areas to be processed further.
 
-   * Lower bound filters out non-vegetation tones.
-   * Upper bound prevents inclusion of excessively bright or non-leaf regions.
-
-   This step generates a binary mask highlighting candidate plant regions.
 
 4. **Morphological Refinement**
    To improve segmentation quality, several morphological operations are applied:
