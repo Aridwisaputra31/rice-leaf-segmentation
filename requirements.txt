@@ -1,0 +1,6 @@
+numpy
+opencv-python
+matplotlib
+
+
+pip install -r requirements.txt
