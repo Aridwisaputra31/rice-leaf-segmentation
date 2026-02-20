@@ -1,24 +1,71 @@
 # rice-leaf-segmentation
 Image segmentation of rice plants using computer vision techniques to extract plant features from field images.
 
-## Overview
-This project performs segmentation of rice plant images using computer vision techniques.
+## Description
 
-## Features
-- Image preprocessing
-- Binary segmentation
-- Morphological filtering
-- Visualization of plant regions
+This project implements an image segmentation pipeline to isolate rice plants from background elements using color-based filtering and morphological image processing. The method focuses on detecting green vegetation regions by transforming the image into the HLS (Hue, Lightness, Saturation) color space, which allows more stable separation of plant color information from illumination effects commonly found in field-acquired images.
 
-### Dataset
+## Method Overview
 
-Due to file size limitations, the dataset is stored externally.
+1. **Image Input**
+   The program reads all `.jpg` images from a specified directory and resizes them to reduce computational load while maintaining visual features.
 
-Download the sample images here:
-https://drive.google.com/drive/folders/1xGhqaJkYC9pV5iae884ST6CkaIyl9k24?usp=sharing
+2. **Color Space Conversion (BGR → HLS)**
+   Images are converted from the default BGR format to HLS color space.
+   This transformation improves segmentation reliability because:
 
-Download the result images here :
-https://drive.google.com/drive/folders/1xGhqaJkYC9pV5iae884ST6CkaIyl9k24?usp=sharing
+   * Hue represents color type (useful for detecting green vegetation).
+   * Lightness separates brightness variations caused by sunlight.
+   * Saturation helps distinguish plants from soil and background noise.
 
+3. **Green Color Thresholding**
+   A predefined HLS range is used to identify pixels belonging to rice plants:
 
+   * Lower bound filters out non-vegetation tones.
+   * Upper bound prevents inclusion of excessively bright or non-leaf regions.
 
+   This step generates a binary mask highlighting candidate plant regions.
+
+4. **Morphological Refinement**
+   To improve segmentation quality, several morphological operations are applied:
+
+   * **Dilation**: Connects fragmented leaf regions.
+   * **Closing**: Fills gaps and holes inside detected plant areas.
+   * **Erosion**: Removes small noise and sharp artifacts.
+
+   These operations ensure that the segmented plant appears as a continuous structure rather than scattered pixels.
+
+5. **Mask Application**
+   The refined binary mask is applied to the original image using a bitwise operation, producing the final segmented output where:
+
+   * Rice plants are preserved.
+   * Background (soil, shadows, debris) is suppressed.
+
+6. **Output Generation**
+   The processed images are automatically saved to an output directory with a new filename prefix, enabling batch processing of large datasets.
+
+## Purpose
+
+The segmentation results can be used as a preprocessing step for:
+
+* Plant growth analysis
+* Feature extraction for machine learning
+* Vegetation coverage measurement
+* Precision agriculture monitoring
+
+## Key Characteristics
+
+* Designed for real-world agricultural imagery with uneven lighting.
+* Works on images captured from different cameras or smartphones.
+* Fully automated batch processing.
+* Uses classical computer vision techniques (no training required).
+* Lightweight and suitable for rapid analysis workflows.
+
+## Technologies Used
+
+* Python
+* OpenCV (image processing and morphology)
+* NumPy (numerical operations)
+* Matplotlib (image saving and visualization)
+
+This project demonstrates a practical implementation of rule-based vegetation segmentation for agricultural image analysis.
