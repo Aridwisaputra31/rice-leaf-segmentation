@@ -4,17 +4,19 @@ import cv2
 import matplotlib.pyplot as plt
 import os
 
+# ==========================================================
+# NOTE:
+# Please change the folder paths below according to the
+# image storage location on your local computer.
+# Example (Windows): D:\YourFolder\Subfolder
+# ==========================================================
+
 ddir=os.listdir(r'D:\File Photo\Ari\SAMSUNG 1\HST 60\Baris 6 hst 60 ari\Equalisasi\Hasil_Clahe')
 folderFile=r'D:\File Photo\Ari\SAMSUNG 1\HST 60\Baris 6 hst 60 ari\Equalisasi\Hasil_Clahe'
 folsave=r'D:\File Photo\Ari\SAMSUNG 1\HST 60\Baris 6 hst 60 ari\Equalisasi\Hasil_Clahe\Masking1'
 
 for i in ddir:
-    #print(i)
-    #folmasking=folderFile+"\\"+i
-    # maskingdir=os.listdir(folmasking)
-    # print(maskingdir)
-    # for j in folmasking:
-    #print(folmasking)
+  #print(folmasking)
     if i.endswith('jpg'):
         print(i)
         nfol_hasil=os.path.join(folderFile,i)
