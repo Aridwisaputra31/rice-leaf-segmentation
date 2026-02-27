@@ -3,6 +3,12 @@ import cv2
 import matplotlib.pyplot as plt
 import os
 
+# ==========================================================
+# NOTE:
+# Please change the folder paths below according to the
+# image storage location on your local computer.
+# Example (Windows): D:\YourFolder\Subfolder
+# ==========================================================
 
 ddir=os.listdir(r'D:\File Photo\Ari\SAMSUNG 1\HST 60\Baris 6 hst 60 ari\Equalisasi\Hasil_Clahe\Masking3')
 folderFile=r'D:\File Photo\Ari\SAMSUNG 1\HST 60\Baris 6 hst 60 ari\Equalisasi\Hasil_Clahe\Masking3'
